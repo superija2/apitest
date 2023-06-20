@@ -1,0 +1,36 @@
+_id: req_8b00f281fdcd41ea804ef20c71bac787
+type: Request
+parentId: wrk_932de254578146059b2268052d4e748e
+modified: 1687254437134
+created: 1687208174812
+url: http://localhost:8080/apitest/activate
+name: Activate
+description: ""
+method: POST
+body:
+  mimeType: application/xml
+  text: >-
+    <ActivationRequest>
+    	<IMEI>872567065752314</IMEI>
+    	<ICCID>5892042000000804370</ICCID>
+    	<CustomerOrderNo>Joab Vision</CustomerOrderNo>		
+    	<CustomerNumber>5259908</CustomerNumber>
+    	<Provider>
+    		<Name>TELEKOM</Name>
+    		<Identifier>17cf567d-f434-417a-999d-019145646c65</Identifier>			</Provider>
+    	<TariffProfile>CT1200</TariffProfile>				
+    	<Purchaser>elias.dederichs@eufh-mail.de</Purchaser>
+    </ActivationRequest>
+parameters: []
+headers:
+  - name: Content-Type
+    value: application/xml
+authentication: {}
+metaSortKey: -1687208174812
+isPrivate: false
+settingStoreCookies: true
+settingSendCookies: true
+settingDisableRenderRequestBody: false
+settingEncodeUrl: true
+settingRebuildPath: true
+settingFollowRedirects: global
