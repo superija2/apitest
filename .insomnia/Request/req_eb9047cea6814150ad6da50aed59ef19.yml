@@ -1,9 +1,9 @@
 _id: req_eb9047cea6814150ad6da50aed59ef19
 type: Request
 parentId: wrk_932de254578146059b2268052d4e748e
-modified: 1687208673902
+modified: 1687465397713
 created: 1667924315678
-url: http://localhost:8080/apitest/ping
+url: https://localhost:443/apitest/ping
 name: Ping
 description: ""
 method: GET
