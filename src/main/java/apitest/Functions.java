@@ -24,11 +24,13 @@ public class Functions {
 	 */
 	public static Response activate(String xml_in) {
 		try {
+			// Generate XML source
 			XPath xpath = XPathFactory.newInstance().newXPath();
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = dbf.newDocumentBuilder();
-		    Document document = builder.parse(new InputSource(new StringReader(xml_in)));
+			Document document = builder.parse(new InputSource(new StringReader(xml_in)));
 
+			// Gather values from the XML file
 			String providerName = xpath.evaluate("ActivationRequest/Provider/Name", document);
 			String providerIdentifier = xpath.evaluate("ActivationRequest/Provider/Identifier", document);
 
@@ -40,15 +42,17 @@ public class Functions {
 
 			String kdAuftrNr = xpath.evaluate("ActivationRequest/CustomerNumber", document);
 
+			// Validate file based on syntax
 			validateXML(document, xpath);
 
+			// Create order
 			initOrder(imei, iccid, purchaser, providerName, providerIdentifier, tariffProfile, kdAuftrNr);
 
 			return createResponseOK(true);
 		} catch (XPathExpressionException xe) {
-			return createResponseError(230, "XML Validation Failed");
+			return Response.status(Response.Status.NOT_ACCEPTABLE).build();
 		} catch (Exception e) {
-			return createResponseError(500, "Internal Server Error");
+			return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
 		}
 	}
 
@@ -99,9 +103,9 @@ public class Functions {
 	 * @param HTTP   error message that should be returned to the customer
 	 * @return HTTP response with custom HTTP code and body
 	 */
-	public static Response createResponseError(int status, String message) {
-		return Response.status(status, message).build();
-	}
+//	public static Response createResponseError(Status status) {
+//		return Response.status(status).build();
+//	}
 
 	/**
 	 * An order gets created in the database. Based on the provided IMEI and ICCID
